@@ -1,0 +1,36 @@
+{    
+"TableName":"newSpendingData",    
+        "Item":{      
+            "id": {"S" : "$context.requestId"},
+            "date": {"S": "$input.params('date')"}, 
+            "item": {"S": "$input.params('item')"}, 
+            "price": {"S": "$input.params('price')"},
+            "category": {"S": "$input.params('category')"},
+            "income": {"S": "$input.params('income')"}
+            }}
+
+
+{    "TableName":"budget",    
+            "Item":{
+                    "budget-id": {"S": "Value"},
+                    "actual-budget": {"S": "$input.params('budget')"}
+                    }
+}
+
+
+APIGateway-to-DynamoDB Policy/Permissions
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:putItem",
+                "dynamodb:Query",
+                "dynamodb:DeleteItem"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
